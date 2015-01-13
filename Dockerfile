@@ -27,7 +27,7 @@ RUN git clone https://github.com/creationix/nvm.git $HOME/.nvm && \
     echo ". $HOME/.nvm/nvm.sh" >> /etc/bash.bashrc  
 RUN /bin/bash -c '. $HOME/.nvm/nvm.sh && nvm install $NODE_VER && nvm use $NODE_VER && nvm alias default $NODE_VER && ln -s /.nvm/$NODE_VER/bin/node /usr/bin/node && ln -s /.nvm/$NODE_VER/bin/npm /usr/bin/npm'
 
-RUN sudo npm install -g grunt-cli
-RUN sudo npm install -g bower
-RUN sudo npm install -g forever
+RUN npm install -g grunt-cli
+RUN npm install -g bower
+RUN npm install -g forever
 RUN sudo apt-get install phantomjs
