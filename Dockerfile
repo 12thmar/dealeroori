@@ -17,25 +17,39 @@ RUN apt-get update -qqy \
     git \
   && rm -rf /var/lib/apt/lists/*
 
-# Install NVM
-RUN git clone https://github.com/creationix/nvm.git ~/nvm
-RUN echo "source ~/nvm/nvm.sh" 
+USER root
+ENV HOME /root
+ENV NODE_VER v0.10.31
 
-# Install nvm version node.js
-RUN sudo "~/nvm/nvm.sh"
-    && nvm install v0.10.31 
-    && nvm use v0.10.31 
-    && nvm alias default v0.10.31
+# Install NVM
+RUN git clone https://github.com/creationix/nvm.git $HOME/.nvm
+RUN echo '\n#The Following loads nvm, and install Node.js which version is assigned to $NODE_ENV' >> $HOME/.profile
+RUN echo '. ~/.nvm/nvm.sh' >> $HOME/.profile
+RUN echo 'echo "Installing node@${NODE_VER}, this may take several minutes..."' >> $HOME/.profile
+RUN echo 'nvm install ${NODE_VER}' >> $HOME/.profile
+RUN echo 'nvm alias default ${NODE_VER}' >> $HOME/.profile
+RUN echo 'echo "Install node@${NODE_VER} finished."' >> $HOME/.profile
+ENTRYPOINT ["/bin/bash", "--login", "-i", "-c"]
+CMD ["bash"]
+
+
+##RUN echo "source ~/nvm/nvm.sh" 
+
+### Install nvm version node.js
+##RUN sudo "~/nvm/nvm.sh"
+##    && nvm install v0.10.31 
+##    && nvm use v0.10.31 
+##    && nvm alias default v0.10.31
 
 # Install node.js using nvm
 #RUN ln -s /.nvm/v0.10.18/bin/node /usr/bin/node 
 #    && ln -s /.nvm/v0.1018/bin/npm /usr/bin/npm
 
 # Install package managers
-RUN npm install -g sm
+#RUN npm install -g sm
 
-RUN npm install -g requirejs
-RUN npm install -g grunt-cli
-RUN npm install -g karma
-RUN npm install -g request
-RUN npm install -g protractor
+#RUN npm install -g requirejs
+#RUN npm install -g grunt-cli
+#RUN npm install -g karma
+#RUN npm install -g request
+#RUN npm install -g protractor
