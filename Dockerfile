@@ -21,14 +21,20 @@ USER root
 ENV HOME /root
 ENV NODE_VER v0.10.31
 
+
 # Install NVM
-RUN git clone https://github.com/creationix/nvm.git $HOME/.nvm
-RUN echo '\n#The Following loads nvm, and install Node.js which version is assigned to $NODE_ENV'
-RUN echo '. ~/.nvm/nvm.sh'
-RUN echo 'echo "Installing node@${NODE_VER}, this may take several minutes..."'
-RUN echo 'nvm install ${NODE_VER}'
-RUN echo 'nvm alias default ${NODE_VER}'
-RUN echo 'echo "Install node@${NODE_VER} finished."'
+RUN git clone https://github.com/creationix/nvm.git $HOME/.nvm && \
+    echo ". $HOME/.nvm/nvm.sh" >> /etc/bash.bashrc && \
+    /bin/bash -c '. $HOME/.nvm/nvm.sh'
+
+# Install NVM
+#RUN git clone https://github.com/creationix/nvm.git $HOME/.nvm && \
+#   echo '\n#The Following loads nvm, and install Node.js which version is assigned to $NODE_ENV' && \
+#   echo 'source ~/.nvm/nvm.sh' && \
+#   echo 'echo "Installing node@${NODE_VER}, this may take several minutes..."' && \
+#   echo 'nvm install ${NODE_VER}' && \
+#   echo 'nvm alias default ${NODE_VER}' && \
+#   echo 'echo "Install node@${NODE_VER} finished."'
 ## ENTRYPOINT ["/bin/bash", "--login", "-i", "-c"]
 ## CMD ["bash"]
 
