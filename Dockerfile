@@ -20,10 +20,10 @@ RUN apt-get update -qqy \
 # Install NVM
 RUN git clone https://github.com/creationix/nvm.git ~/nvm
 #source the shell script
-RUN echo "source ~/nvm/nvm.sh" 
+RUN echo ". ~/nvm/nvm.sh" 
 
 # Install nvm version node.js
-RUN /bin/bash -c '. /.nvm/nvm.sh 
+RUN /bin/bash -c ". /.nvm/nvm.sh"
     && nvm install v0.10.31 
     && nvm use v0.10.31 
     && nvm alias default v0.10.31
