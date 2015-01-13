@@ -31,7 +31,7 @@ RUN git clone https://github.com/creationix/nvm.git $HOME/.nvm && \
     echo ". $HOME/.nvm/nvm.sh" >> /etc/bash.bashrc  
 RUN /bin/bash -c '. $HOME/.nvm/nvm.sh && nvm install $NODE_VER && nvm use $NODE_VER && nvm alias default $NODE_VER && ln -s /.nvm/$NODE_VER/bin/node /usr/bin/node && ln -s /.nvm/$NODE_VER/bin/npm /usr/bin/npm'
 
-RUN echo " cd /.nvm/$NODE_VER && \
+RUN cd /.nvm/$NODE_VER && \
     cp -prf bin/* /usr/local/bin/ && \
     cp -prf lib/* /usr/local/lib/ && \
     cp -prf share/* /usr/local/share/
