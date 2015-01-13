@@ -22,7 +22,7 @@ RUN git clone https://github.com/creationix/nvm.git ~/nvm
 RUN echo "source ~/nvm/nvm.sh" 
 
 # Install nvm version node.js
-RUN sudo /bin/bash -c "~/nvm/nvm.sh"
+RUN sudo "~/nvm/nvm.sh"
     && nvm install v0.10.31 
     && nvm use v0.10.31 
     && nvm alias default v0.10.31
