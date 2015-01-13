@@ -25,8 +25,8 @@ ENV NODE_VER v0.10.31
 # Install NVM
 RUN git clone https://github.com/creationix/nvm.git $HOME/.nvm && \
     echo ". $HOME/.nvm/nvm.sh" >> /etc/bash.bashrc && \
-    /bin/bash -c '. $HOME/.nvm/nvm.sh' && \
-    nvm install $NODE_VER 
+    /bin/bash -c '. $HOME/.nvm/nvm.sh' 
+RUN  nvm install $NODE_VER 
 
 ##
 
