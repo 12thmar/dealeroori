@@ -15,6 +15,10 @@ RUN apt-get update -qqy \
     ca-certificates \
     wget \
     git \
+    build-essential \
+    libssl-dev \
+    curl \
+    libxml2-dev \
   && rm -rf /var/lib/apt/lists/*
 
 USER root
@@ -23,22 +27,13 @@ ENV NODE_VERSION v0.10.31
 
 
 # Install NVM
-## RUN git clone https://github.com/creationix/nvm.git $HOME/.nvm && \
-##    echo ". $HOME/.nvm/nvm.sh" >> /etc/bash.bashrc  
-## RUN /bin/bash -c '. $HOME/.nvm/nvm.sh && nvm install $NODE_VER && nvm use $NODE_VER && nvm alias default $NODE_VER && ln -s /.nvm/$NODE_VER/bin/node /usr/bin/node && ln -s /.nvm/$NODE_VER/bin/npm /usr/bin/npm'
+RUN git clone https://github.com/creationix/nvm.git $HOME/.nvm && \
+    echo ". $HOME/.nvm/nvm.sh" >> /etc/bash.bashrc  
+RUN /bin/bash -c '. $HOME/.nvm/nvm.sh && nvm install $NODE_VER && nvm use $NODE_VER && nvm alias default $NODE_VER && ln -s /.nvm/$NODE_VER/bin/node /usr/bin/node && ln -s /.nvm/$NODE_VER/bin/npm /usr/bin/npm'
 
-#=================
-# Install nodejs & protractor                                                          
-#=================
-RUN cd /tmp  \
-   && wget http://nodejs.org/dist/$NODE_VERSION/node-$NODE_VERSION-linux-x64.tar.gz \
-   && tar -zxf node-$NODE_VERSION-linux-x64.tar.gz \
-   && cd node-$NODE_VERSION-linux-x64 \
-   && cp -prf bin/* /usr/local/bin/ \
-   && cp -prf lib/* /usr/local/lib/ \
-   && cp -prf share/* /usr/local/share/
+RUN cd /.nvm/$NODE_VER && \
+    cp -prf bin/* /usr/local/bin/ && \
+    cp -prf lib/* /usr/local/lib/ && \
+    cp -prf share/* /usr/local/share/
 
 RUN npm install -g grunt-cli
-RUN npm install -g bower
-RUN npm install -g forever
-RUN sudo apt-get install phantomjs
