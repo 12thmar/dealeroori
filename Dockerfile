@@ -28,8 +28,8 @@ RUN sudo "~/nvm/nvm.sh"
     && nvm alias default v0.10.31
 
 # Install node.js using nvm
-RUN ln -s /.nvm/v0.10.18/bin/node /usr/bin/node 
-    && ln -s /.nvm/v0.1018/bin/npm /usr/bin/npm
+#RUN ln -s /.nvm/v0.10.18/bin/node /usr/bin/node 
+#    && ln -s /.nvm/v0.1018/bin/npm /usr/bin/npm
 
 # Install package managers
 RUN npm install -g sm
