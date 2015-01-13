@@ -20,7 +20,7 @@ RUN apt-get update -qqy \
 # Install NVM
 RUN git clone https://github.com/creationix/nvm.git ~/nvm
 #source the shell script
-RUN echo ". ~/nvm/nvm.sh" 
+RUN echo "source ~/nvm/nvm.sh" 
 
 # Install nvm version node.js
 RUN /bin/bash -c ". /.nvm/nvm.sh"
@@ -30,7 +30,7 @@ RUN /bin/bash -c ". /.nvm/nvm.sh"
 
 # Install node.js using nvm
 RUN ln -s /.nvm/v0.10.18/bin/node /usr/bin/node 
-    && ln -s /.nvm/v0.1018/bin/npm /usr/bin/npm'
+    && ln -s /.nvm/v0.1018/bin/npm /usr/bin/npm
 
 # Install package managers
 RUN npm install -g sm
