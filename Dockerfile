@@ -28,6 +28,8 @@ RUN git clone https://github.com/creationix/nvm.git $HOME/.nvm && \
     /bin/bash -c '. $HOME/.nvm/nvm.sh' && \
     nvm install $NODE_VER 
 
+##
+
 ##    nvm use $NODE_VER && \
 ##    nvm alias default $NODE_VER
 
